@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Yugi’s Apology 💔</title>
+
+<meta name="description" content="This isn’t just a Valentine page. It’s an apology, a confession, and a heart that never stopped loving you.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yugi’s Apology 💔">
+<meta property="og:description" content="I broke things I never meant to break. I lost you, but I never lost love. This is my apology.">
+<meta property="og:image" content="https://yourdomain.com/images/yugi-apology.jpg">
+<meta property="og:url" content="https://yourdomain.com">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yugi’s Apology 💔">
+<meta name="twitter:description" content="Even if we don’t go back, my heart will always choose you.">
+<meta name="twitter:image" content="https://yourdomain.com/images/yugi-apology.jpg">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(#ffdde1,#ee9ca7);
+  overflow-x:hidden;
+}
+
+/* ---------- SECTIONS ---------- */
+section{
+  min-height:100vh;
+  padding:80px 20px;
+  text-align:center;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.hero h1{
+  font-size:3rem;
+}
+
+/* ---------- GALLERY ---------- */
+.gallery{
+  display:flex;
+  gap:30px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.polaroid{
+  width:180px;
+  background:white;
+  padding:10px;
+  font-family:'Indie Flower',cursive;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+  transform:rotate(-4deg);
+}
+
+.polaroid img{
+  width:100%;
+}
+
+/* ---------- LOVE LETTER ---------- */
+#letterBox{
+  background:white;
+  max-width:600px;
+  margin:auto;
+  padding:30px;
+  border-radius:10px;
+  text-align:left;   /* 🔥 IMPORTANT */
+}
+#letter{
+  font-family:'Indie Flower',cursive;
+  font-size:22px;
+  line-height:1.9;
+  white-space:pre-wrap;   /* 🔥 IMPORTANT */
+}
+
+
+/* ---------- REASONS ---------- */
+.emoji-bar{
+  font-size:40px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  cursor:pointer;
+}
+
+.reason-box{
+  margin-top:30px;
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
+  display:none;
+}
+
+/* ---------- FINAL ---------- */
+#final button{
+  font-size:28px;
+  padding:15px 40px;
+  border-radius:40px;
+  border:none;
+  background:red;
+  color:white;
+}
+
+/* ---------- SLOW BACKGROUND HEARTS ---------- */
+.heart{
+  position:fixed;
+  bottom:-30px;
+  font-size:20px;
+  opacity:.25;
+  animation:float 14s linear infinite;
+  pointer-events:none;
+  z-index:-1;
+}
+
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(-120vh);}
+}
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  top:50%;
+  left:50%;
+  pointer-events:none;
+  animation:confetti-fall 1.8s ease-out forwards;
+}
+
+@keyframes confetti-fall{
+  0%{
+    transform:translate(0,0) rotate(0deg);
+    opacity:1;
+  }
+  100%{
+    transform:translate(var(--x), var(--y)) rotate(720deg);
+    opacity:0;
+  }
+}
+.reasons-container{
+  max-width:500px;
+  margin:40px auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.reason-card{
+  background:white;
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  cursor:pointer;
+}
+
+.emoji{
+  font-size:32px;
+  text-align:center;
+}
+
+.reason-content{
+  margin-top:12px;
+  font-size:17px;
+  display:none;
+  animation:fadeUp .4s ease;
+}
+
+.reason-card.active .reason-content{
+  display:block;
+}
+.reason-card.active{
+  transform:translateY(-3px);
+  transition:.3s ease;
+}
+.btn-box{
+  margin-top:30px;
+  position:relative;
+  height:120px;
+}
+
+#yesBtn{
+  font-size:26px;
+  padding:15px 40px;
+  border-radius:40px;
+  border:none;
+  background:red;
+  color:white;
+}
+
+#noBtn{
+  font-size:22px;
+  padding:12px 30px;
+  border-radius:40px;
+  border:none;
+  background:#555;
+  color:white;
+  position:absolute;
+  left:55%;
+  top:0;
+  transition:.3s ease;
+}
+.popup{
+  backdrop-filter: blur(6px);
+  background:rgba(0,0,0,0.55);
+}
+.popup{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+
+.popup-box{
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+  animation:pop .4s ease;
+}
+
+@keyframes pop{
+  0%{transform:scale(0.6); opacity:0;}
+  60%{transform:scale(1.08);}
+  80%{transform:scale(0.96);}
+  100%{transform:scale(1); opacity:1;}
+}
+.popup-box button{
+  margin-top:15px;
+  padding:10px 26px;
+  font-size:16px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 12px rgba(255,77,109,.7);
+  animation:glow 1.4s infinite alternate;
+}
+
+@keyframes glow{
+  from{box-shadow:0 0 8px rgba(255,77,109,.5);}
+  to{box-shadow:0 0 18px rgba(255,77,109,1);}
+}
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+#letter{
+  font-family:'Indie Flower',cursive;
+  font-size:22px;
+  line-height:1.8;
+  white-space:pre-line;
+}
+.dates{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.date-card{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  width:180px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+#helper{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:white;
+  padding:12px 18px;
+  border-radius:30px;
+  box-shadow:0 6px 16px rgba(0,0,0,.2);
+  font-size:15px;
+  animation:bounce 1.2s infinite;
+  z-index:5;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+#secretBox{
+  display:none;
+  animation:fadeIn .6s ease forwards;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(.9);}
+  to{opacity:1; transform:scale(1);}
+}
+#viewLetterBtn{
+  font-size:22px;
+  padding:14px 36px;
+  border-radius:40px;
+  border:none;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+.hidden{
+  display:none;
+}
+
+#letterBox{
+  opacity:0;
+  transform:translateY(40px);
+  animation:letterReveal 1s ease forwards;
+}
+
+@keyframes letterReveal{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+.hug-wrapper{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin:40px 0;
+}
+
+.hug-btn{
+  background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
+  border:none;
+  border-radius:60px;
+  padding:16px 34px;
+  font-size:22px;
+  color:white;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:0 0 20px rgba(255,77,109,.6);
+  animation:hugBeat 1.4s infinite;
+}
+
+.hug-btn span{
+  font-size:18px;
+}
+
+@keyframes hugBeat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+.hug-sub{
+  margin-top:10px;
+  font-size:14px;
+  color:#fff;
+  opacity:.85;
+  animation:fadeSoft 2s infinite;
+}
+
+@keyframes fadeSoft{
+  0%{opacity:.4;}
+  50%{opacity:1;}
+  100%{opacity:.4;}
+}
+.hug-popup{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(6px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.hug-box{
+  background:linear-gradient(#ff9a9e,#fad0c4);
+  padding:35px 25px;
+  border-radius:24px;
+  text-align:center;
+  width:85%;
+  max-width:320px;
+  animation:pop .4s ease;
+}
+
+.hug-emoji{
+  font-size:64px;
+  animation:hugBeat 1.4s infinite;
+}
+
+.hug-box h2{
+  margin:10px 0;
+  font-size:28px;
+  color:#fff;
+}
+
+.hug-box p{
+  font-size:18px;
+  color:#fff;
+  line-height:1.5;
+}
+
+.stay-btn{
+  margin-top:20px;
+  padding:12px 26px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  background:white;
+  color:#ff4d6d;
+  cursor:pointer;
+}
+
+@keyframes hugBeat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
+
+@keyframes pop{
+  from{transform:scale(.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+.hug-center{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  margin:40px auto;
+}
+
+.hug-btn{
+  margin:0 auto;
+}
+.video-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(6px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.video-box{
+  width:90%;
+  max-width:340px;
+  background:#000;
+  border-radius:20px;
+  padding:14px;
+}
+
+.video-wrap{
+  position:relative;
+  width:100%;
+  height:70vh;          /* 🔥 taller for vertical video */
+  max-height:420px;
+  background:black;
+  overflow:hidden;
+  border-radius:16px;
+}
+
+.video-wrap video{
+  width:100%;
+  height:100%;
+  object-fit:contain;  /* 🔥 FULL VIDEO visible */
+}
+.video-overlay{
+  position:absolute;
+  bottom:14px;
+  left:0;
+  right:0;
+  text-align:center;
+  color:white;
+  font-size:15px;
+  padding:0 12px;
+  text-shadow:0 2px 8px rgba(0,0,0,.7);
+}
+
+.close-btn{
+  margin-top:12px;
+  padding:10px 22px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4d6d;
+  font-size:14px;
+}
+.video-overlay.top{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+
+  padding:14px 12px;
+  text-align:center;
+
+  font-size:15px;
+  color:white;
+
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0)
+  );
+
+  opacity:0;
+  transform:translateY(-10px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+
+.video-overlay.top.show{
+  opacity:1;
+  transform:translateY(0);
+}
+.video-overlay.top{
+  z-index:5;   /* 🔥 THIS FIXES IT */
+}
+.video-wrap{
+  position:relative;
+  width:100%;
+  height:70vh;
+  max-height:420px;
+  overflow:hidden;
+}
+.voice-btn{
+  margin:30px auto;
+  padding:16px 36px;
+  font-size:20px;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(255,77,109,.6);
+  animation:pulse 1.4s infinite;
+  display:block;
+}
+
+.voice-btn:active{
+  transform:scale(.95);
+}
+.popup-box{
+  max-height: 80vh;
+  overflow-y: auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Hey ❤️</h1>
+  <p>This is for you…</p>
+</section>
+
+
+  <div id="secretBox" style="display:none;margin-top:30px;background:white;padding:25px;border-radius:14px;">
+    <h3>You found it 🥹❤️</h3>
+    <p>No one else gets to see this.</p>
+  </div>
+</section>
+<!-- GALLERY -->
+<section>
+  <h2>Memory Lane 📸</h2>
+  <div class="gallery">
+    <div class="polaroid">
+      <img src="1st.jpg">
+      <p>1st pic 🥰</p>
+    </div>
+  <div class="gallery">
+    <div class="polaroid">
+      <img src="1.jpg">
+      <p>That smile 🥰</p>
+    </div>
+    <div class="polaroid">
+      <img src="2.jpg">
+      <p>1st tym na unnaku stry poten 💕</p>
+    </div>
+    <div class="polaroid">
+      <img src="3.jpg">
+      <p>prank pannom but that tym i personally know its going to happen 💖</p>
+    </div>
+     <div class="polaroid">
+      <img src="4.jpg">
+      <p>Last pic, before everything went wrong 🥺</p>
+    </div>
+  </div>
+</section>
+<section>
+  <h2>Important Dates 📆</h2>
+<div class="dates">
+<div class="date-card">
+      <h3>🌸 First Meet</h3>
+      <p>03 July 2024</p>
+      <p>Jeevan iva dhan Deepthi frnd nu solli katna black dress la jeda pinnitu irutha😹</p>
+    </div>
+    <div class="dates">
+    <div class="date-card">
+      <h3>💬 First Chat</h3>
+      <p>08 July 2024</p>
+      <p>1st tym forum mall ponom appo edutha pic keka msg panna</p>
+    </div>
+  <div class="dates">
+    <div class="date-card">
+      <h3> 📞 First call</h3>
+      <p>07 September 2024</p>
+      <p> Naa Thirupathiku bus la pogum pothu rmb neram peasunom</p>
+    </div>
+    
+
+    <div class="date-card">
+      <h3>❤️ Today</h3>
+      <p>Forever in heart</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- LOVE LETTER -->
+<section>
+  <h2>Love Letter 💌</h2>
+
+  <button id="viewLetterBtn" onclick="showLetter()">
+    View Letter 💖
+  </button>
+
+  <div id="letterBox" class="hidden">
+    <div id="letter"></div>
+  </div>
+</section>
+<button class="voice-btn" onclick="openVoicePopup()">
+  🎧 Listen to Me
+</button>
+<div id="voicePopup" class="popup">
+  <div class="popup-box">
+    <p id="voiceText" style="color:#000;font-size:18px;line-height:1.6;"></p>
+    <button onclick="closeVoicePopup()">🤍 Close</button>
+  </div>
+</div>
+
+<audio id="voiceAudio" src="voice.mp3"></audio>
+<!-- REASONS -->
+<section>
+  <h2>Reasons Why I Love You 📝</h2>
+  <p>Touch the emojis 👀</p>
+
+  <div class="reasons-container">
+
+  <div class="reason-card" onclick="toggleReason(0)">
+    <div class="emoji">😊</div>
+    <div class="reason-content">Nee illaama irukkum bodhu thaan purinjadhu… you were my bangaram 💛 not just a word, but the most precious part of my life.</div>
+  </div>
+
+  <div class="reason-card" onclick="toggleReason(1)">
+    <div class="emoji">💖</div>
+    <div class="reason-content">Even today, en manasu unna bharya-nu thaan ninaikkudhu  🩷not because of names, but because of the bond we shared.</div>
+  </div>
+
+  <div class="reason-card" onclick="toggleReason(2)">
+    <div class="emoji">✨</div>
+    <div class="reason-content">We are breaking now, but namma story fake illa 😔 it was real, deep, and meant something to me.</div>
+  </div>
+
+  <div class="reason-card" onclick="toggleReason(3)">
+    <div class="emoji">🫶</div>
+    <div class="reason-content">Words vida silence romba valikkudhu 😢 because it keeps reminding me of how close we once were, Isidore.</div>
+  </div>
+
+  <div class="reason-card" onclick="toggleReason(4)">
+    <div class="emoji">🥰</div>
+    <div class="reason-content">Nee ponaalum, en manasula nee irukkura idam kaali aagala 💔… and maybe that’s love — holding on quietly while learning to let go 🌙</div>
+  </div>
+
+</div>
+<button onclick="openVideoPopup()" class="stay-btn">
+  🌙 rewinding us
+</button>
+
+<div id="videoPopup" class="video-popup">
+  <div class="video-box">
+
+    <div class="video-wrap">
+      <video id="memoryVideo" playsinline muted>
+        <source src="memory.mp4" type="video/mp4">
+      </video>
+
+      
+    </div>
+
+    <button class="close-btn" onclick="closeVideoPopup()">
+      Close 🤍
+    </button>
+
+  </div>
+</div>
+
+
+<div class="hug-center">
+  <button class="hug-btn" onclick="openHugPopup()">
+    🫂 Give Me a Hug
+  </button>
+  <p class="hug-sub">I really need one right now 🥺</p>
+</div>
+
+<div id="hugPopup" class="hug-popup">
+  <div class="hug-box">
+    <div class="hug-emoji">🫂</div>
+    <h2>Come here…</h2>
+    <p>If I were there,<br>I’d hug you tight now 🥹</p>
+
+    <button class="stay-btn" onclick="closeHugPopup()">
+      Stay a little longer 🥺
+    </button>
+  </div>
+</div>
+<!-- FINAL -->
+<section id="final">
+  <h1 id="finalText">Will You Be My Valentine? 💘</h1>
+
+  <div class="btn-box">
+    <button id="yesBtn" onclick="celebrate()">YES ❤️</button>
+    <button id="noBtn" onclick="moveNo()">NO 😏</button>
+  </div>
+</section>
+
+
+<script>
+/* ---------- TYPEWRITER ---------- */
+const letterText = `My Dearest Bharya 💖,
+
+Unakku sollanum-nu en manasula aayiram vaarthaigal irukku 💭 There are a thousand things I want to tell you, and even more feelings in my heart ❤️ that words can never fully hold. Still, today I want to try, because you deserve to know what you mean to me ✨
+
+When I look back at us, en kannukku munnaadi varradhu sirippu 😊, warmth 🤍, and namma rendu perum serndhu kanavu kanda andha neram 🌙✨. The talks about our future 🏡, about building a home together, about holding hands through every joy 🌈 and every storm 🌧️ — ellamey en manasula romba aazhamaa irukku 💞. Those memories are not just passing clouds ☁️ to me; they are the sky itself 🌌.
+
+Aana andha azhagana moments-ku nadula naan unakku valichirukken-nu enakku theriyum 😔. I know I’ve hurt you 💔 and I know my mistakes caused you pain 😞. And that thought breaks me inside, because the last thing I ever wanted was to be the reason for your tears 🥺. En mistakes-a naan maraikkala; naan unmaiya othukiren 🙏.
+
+Even then, nee ennai vittu pogala 🤍. You stood by me 🫂, and that strength of yours is what keeps me alive 💪❤️. Adhu dhaan ennai kaadhal-la innum nambikkai vaika vechadhu, deeper-aa love panna kathukuduthadhu 💖.
+
+Rakshi 🫶, you are not just a part of my life — you are my whole life 🌍❤️. I don’t want us to be just another “once upon a time” story. I want us to be a forever ♾️ — the kind that fights, breaks, heals, and still finds its way back stronger 🤝
+naan adhu ellathaiyum treasures madhiri paathukiren. I don't want us to be just another "once upon a time" story💞.
+
+I want us to be a forever - the kind that fights, breaks, heals, and still finds its way back stronger. Sandaiyum varum, kashtamum varum, aana ellathaiyum thaandi namma rendu perum thirumba onnaa nikkum kadhai.
+
+You are my today, my tomorrow, and every heartbeat in between.No matter what storms come, naan unna vitu poga  maatten-nu unakku promise panniruken. You are not temporary in my life.
+
+Naan unakku thirumba varanum‑nu ketkala…
+Naan un life‑la irukkanum‑nu force pannala…
+
+Aana nee happy‑aa irundhaa podhum 🤍
+Andha happiness‑la naan oru chinna memory‑aa irundhaalum
+enakku adhu podhum 🌙
+
+Always yours,  
+Yugi (bava) 💌`;
+let i = 0;
+const speed = 30;
+
+function showLetter(){
+  document.getElementById("viewLetterBtn").style.display="none";
+
+  const box = document.getElementById("letterBox");
+  box.classList.remove("hidden");
+
+  // 🎵 PLAY SONG
+  const song = document.getElementById("loveSong");
+  song.volume = 0.6;
+  song.play().catch(e=>console.log("Autoplay blocked"));
+
+  typeWriter();
+}
+const song = document.getElementById("loveSong");
+
+
+let vol = 0;
+const fade = setInterval(()=>{
+  if(vol < 0.6){
+    vol += 0.05;
+    song.volume = vol;
+  }else{
+    clearInterval(fade);
+  }
+},200);
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+  document.getElementById("loveSong").pause();
+}
+
+function typeWriter(){
+  if(i < letterText.length){
+    document.getElementById("letter").innerHTML += letterText.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+/* ---------- REASONS ---------- */
+function toggleReason(index){
+  const cards=document.querySelectorAll(".reason-card");
+
+  cards.forEach((card,i)=>{
+    if(i===index){
+      card.classList.toggle("active");
+    }else{
+      card.classList.remove("active");
+    }
+  });
+}
+
+/* ---------- BACKGROUND HEARTS ---------- */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerText="💗";
+  heart.style.left=Math.random()*100+"vw";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),14000);
+},2500);
+
+/* ---------- FINAL ---------- */
+function celebrate(){
+  // Change final message
+  document.getElementById("final").innerHTML = `
+    <h1>I knew you’d say YES 💖</h1>
+    <p>Best Valentine ever 🥰</p>
+  `;
+
+  // Confetti explosion
+  for(let i=0;i<120;i++){
+    const conf=document.createElement("div");
+    conf.className="confetti";
+    conf.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    conf.style.setProperty("--x",(Math.random()*600-300)+"px");
+    conf.style.setProperty("--y",(Math.random()*600-300)+"px");
+    document.body.appendChild(conf);
+
+    setTimeout(()=>conf.remove(),1800);
+  }
+}
+let noCount=0;
+
+const noTexts=[
+  "Sure ah? 🤨",
+  "Confirm ah? 😳",
+  "Konjam yosichi paru 😅",
+  " na pavam la 🥺",
+  " bava dhana 😭"
+];
+
+function moveNo(){
+  const noBtn=document.getElementById("noBtn");
+  const text=document.getElementById("finalText");
+
+  if(noCount < noTexts.length){
+    text.innerText=noTexts[noCount];
+    noBtn.style.left=Math.random()*70+"%";
+    noBtn.style.top=Math.random()*60+"px";
+    noCount++;
+  }else{
+    // NO poidum 😌
+    noBtn.remove();
+    text.innerText="Okay okay 😌 YES mattum than option ❤️";
+  }
+}
+setTimeout(()=>{
+  document.getElementById("popup").style.display="flex";
+},1200);
+
+
+const reveals=document.querySelectorAll("section");
+
+window.addEventListener("scroll",()=>{
+  reveals.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top < window.innerHeight-100){
+      sec.classList.add("active");
+    }
+  });
+});
+function checkSecret(){
+  const val = document.getElementById("secretInput").value.trim().toLowerCase();
+
+  const secrets = ["bava", "bangaram", "bhangaram"];
+
+  if(secret.includes(val)){
+    document.getElementById("secretBox").style.display = "block";
+  }else{
+    alert("Almost… 😏 try again");
+  }
+}
+window.addEventListener("scroll", () => {
+  const h = document.getElementById("helper");
+
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+
+  if (scrollPercent < 25) {
+    h.innerText = "👇 Scroll pannunga";
+  } else if (scrollPercent < 50) {
+    h.innerText = "😏 Innum irukku";
+  } else if (scrollPercent < 75) {
+    h.innerText = "😍 Almost there";
+  } else {
+    h.innerText = "💖 Final surprise";
+  }
+});
+
+function openHugPopup(){
+  document.getElementById("hugPopup").style.display="flex";
+}
+
+function closeHugPopup(){
+  document.getElementById("hugPopup").style.display="none";
+}
+function openVideoPopup(){
+  const popup = document.getElementById("videoPopup");
+  const video = document.getElementById("memoryVideo");
+
+  popup.style.display = "flex";   // 🔥 THIS IS THE FIX
+
+  video.currentTime = 0;
+  video.muted = false;            // 🔊 AUDIO ON
+  video.play().catch(e=>console.log(e));
+
+  
+}
+
+function closeVideoPopup(){
+  const popup = document.getElementById("videoPopup");
+  const video = document.getElementById("memoryVideo");
+
+  video.pause();
+  popup.style.display = "none";
+}
+/* ---------- VOICE POPUP CONTENT ---------- */
+const voiceTextContent = `
+Even if namma thirumba pesinaalum illa thirumba try panninaalum, idhu old story repeat aaganum nu avasiyam illa 🙂 Old mistakes, old ego, old fights — adhellam carry pannitu vara vendiyadhu illa nu naan romba clear-aa feel pannuren 🤍.
+
+I’m not saying everything will be perfect. But I am saying naan ippo romba aware-aa irukken.
+I listen better.
+I understand space better.
+Fight panna vida, calm-aa pesradhu evlo mukkiyam nu ippo purijiten🫶.
+
+Idhu sollanum nu thonuchu 🫠 And one thing — nee ready illa na, illa nee already move on agitanu solra but I can't believe it, even if it's true, I’ll respect your decision.
+
+Remember one thing, I'm always there for you at any situation.
+
+Happiee Valentine Muu 💗✨
+`;
+
+/* ---------- LOGIC ---------- */
+let words = voiceTextContent.split(" ");
+let index = 0;
+let voiceInterval = null;
+
+function openVoicePopup(){
+  const popup = document.getElementById("voicePopup");
+  const audio = document.getElementById("voiceAudio");
+  const textBox = document.getElementById("voiceText");
+
+  popup.style.display = "flex";
+  textBox.innerHTML = "";
+  index = 0;
+
+  audio.currentTime = 0;
+  audio.play().catch(()=>{});
+
+  const delay = 320; // 🔧 speed (250 fast | 400 slow)
+
+  voiceInterval = setInterval(() => {
+    if(index < words.length){
+      textBox.innerHTML += words[index] + " ";
+      index++;
+    } else {
+      clearInterval(voiceInterval);
+    }
+  }, delay);
+}
+
+function closeVoicePopup(){
+  document.getElementById("voicePopup").style.display = "none";
+  document.getElementById("voiceAudio").pause();
+  clearInterval(voiceInterval);
+}
+</script>
+<div id="popup" class="popup">
+  <div class="popup-box">
+    <h2>One more thing… 👀</h2>
+    <p>You mean the world to me 💖</p>
+    <button onclick="closePopup()">Aww 🥰</button>
+  </div>
+</div>
+<div id="helper">👇 Scroll pannunga</div>
+<audio id="loveSong" src="song.mp3"></audio>
+
+</body>
+</html>
