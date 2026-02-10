@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Yugi’s Apology 💔</title>
 
 <meta name="description" content="This isn’t just a Valentine page. It’s an apology, a confession, and a heart that never stopped loving you.">
@@ -23,6 +25,7 @@
   padding:0;
   box-sizing:border-box;
 }
+
 body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(#ffdde1,#ee9ca7);
@@ -577,6 +580,70 @@ section{
   max-height: 80vh;
   overflow-y: auto;
 }
+@media (max-width: 768px) {
+
+  section{
+    padding:60px 16px;
+  }
+
+  .hero h1{
+    font-size:2.2rem;
+  }
+
+  .gallery{
+    gap:16px;
+  }
+
+  .polaroid{
+    width:140px;
+  }
+
+  #letter{
+    font-size:18px;
+    line-height:1.6;
+  }
+
+  .date-card{
+    width:100%;
+  }
+
+  #yesBtn, #noBtn{
+    font-size:20px;
+    padding:12px 28px;
+  }
+}
+/* FULL SCREEN IMAGE VIEW */
+.img-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.img-popup img{
+  max-width:90vw;
+  max-height:90vh;
+  object-fit:contain;
+  border-radius:18px;
+}
+
+/* Close button */
+.img-close{
+  position:absolute;
+  top:16px;
+  right:18px;
+  font-size:26px;
+  color:white;
+  cursor:pointer;
+}
+
+/* Stop background scroll */
+body.no-scroll{
+  overflow:hidden;
+}
 </style>
 </head>
 
@@ -593,34 +660,42 @@ section{
     <h3>You found it 🥹❤️</h3>
     <p>No one else gets to see this.</p>
   </div>
-</section>
 <!-- GALLERY -->
 <section>
   <h2>Memory Lane 📸</h2>
+
   <div class="gallery">
     <div class="polaroid">
-      <img src="1st.jpg">
+      <img src="1st.jpg" onclick="openImgPopup(this.src)">
       <p>1st pic 🥰</p>
     </div>
-  <div class="gallery">
+
     <div class="polaroid">
-      <img src="1.jpg">
+      <img src="1.jpg" onclick="openImgPopup(this.src)">
       <p>That smile 🥰</p>
     </div>
+
     <div class="polaroid">
-      <img src="2.jpg">
+      <img src="2.jpg" onclick="openImgPopup(this.src)">
       <p>1st tym na unnaku stry poten 💕</p>
     </div>
+
     <div class="polaroid">
-      <img src="3.jpg">
+      <img src="3.jpg" onclick="openImgPopup(this.src)">
       <p>prank pannom but that tym i personally know its going to happen 💖</p>
     </div>
-     <div class="polaroid">
-      <img src="4.jpg">
+
+    <div class="polaroid">
+      <img src="4.jpg" onclick="openImgPopup(this.src)">
       <p>Last pic, before everything went wrong 🥺</p>
     </div>
   </div>
 </section>
+<!-- IMAGE POPUP -->
+<div id="imgPopup" class="img-popup">
+  <span class="img-close" onclick="closeImgPopup()">✕</span>
+  <img id="popupImg">
+</div>
 <section>
   <h2>Important Dates 📆</h2>
 <div class="dates">
@@ -1016,6 +1091,19 @@ function closeVoicePopup(){
   document.getElementById("voicePopup").style.display = "none";
   document.getElementById("voiceAudio").pause();
   clearInterval(voiceInterval);
+}
+function openImgPopup(src){
+  const popup = document.getElementById("imgPopup");
+  const img = document.getElementById("popupImg");
+
+  img.src = src;
+  popup.style.display = "flex";
+  document.body.classList.add("no-scroll");
+}
+
+function closeImgPopup(){
+  document.getElementById("imgPopup").style.display = "none";
+  document.body.classList.remove("no-scroll");
 }
 </script>
 <div id="popup" class="popup">
