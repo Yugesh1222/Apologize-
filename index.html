@@ -616,21 +616,40 @@ section{
 .img-popup{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.85);
+  background:rgba(0,0,0,0.88);
   display:none;
   justify-content:center;
   align-items:center;
   z-index:9999;
 }
 
-.img-popup img{
+.img-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  max-width:92vw;
+}
+
+.img-content img{
   max-width:90vw;
-  max-height:90vh;
+  max-height:75vh;
   object-fit:contain;
   border-radius:18px;
 }
 
-/* Close button */
+.memory-line{
+  margin-top:14px;
+  font-size:15px;
+  color:#fff;
+  text-align:center;
+  opacity:0;
+  transition:1s ease;
+}
+
+.memory-line.show{
+  opacity:0.9;
+}
+
 .img-close{
   position:absolute;
   top:16px;
@@ -640,10 +659,57 @@ section{
   cursor:pointer;
 }
 
-/* Stop background scroll */
 body.no-scroll{
   overflow:hidden;
 }
+.soft-end{
+  padding:60px 20px;
+  text-align:center;
+  font-size:18px;
+  color:#fff;
+  opacity:0.85;
+  line-height:1.8;
+}
+.soft-end{
+  min-height:100vh;              /* FULL SCREEN */
+  display:flex;
+  justify-content:center;
+  align-items:center;            /* PERFECT CENTER */
+  text-align:center;
+  background:linear-gradient(#ffb3c1,#ff8fa3);
+  padding:20px;
+}
+
+.soft-center p{
+  font-family:'Indie Flower',cursive;   /* emotional handwritten feel */
+  font-size:26px;
+  line-height:1.8;
+  color:#fff;
+  opacity:0;
+  transform:translateY(30px);
+  animation:softFade 2s ease forwards;
+  text-shadow:0 4px 18px rgba(0,0,0,0.25);
+}
+
+/* soft breathing animation */
+.soft-center p{
+  animation:
+    softFade 2s ease forwards,
+    breathe 4s ease-in-out infinite 2s;
+}
+
+@keyframes softFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes breathe{
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.03); }
+}
+
 </style>
 </head>
 
@@ -694,7 +760,13 @@ body.no-scroll{
 <!-- IMAGE POPUP -->
 <div id="imgPopup" class="img-popup">
   <span class="img-close" onclick="closeImgPopup()">✕</span>
-  <img id="popupImg">
+
+  <div class="img-content">
+    <img id="popupImg">
+    <p id="memoryLine" class="memory-line">
+      Indha photo-la irundha sirippu… naan marakka maatten🥺.
+    </p>
+  </div>
 </div>
 <section>
   <h2>Important Dates 📆</h2>
@@ -749,6 +821,11 @@ body.no-scroll{
 </div>
 
 <audio id="voiceAudio" src="voice.mp3"></audio>
+
+<div id="pauseNote" class="pause-note">
+  Idhu padikkum bodhu konjam heavy-aa irundhaa…<br>
+  pause panni oru deep breath eduthuko 🤍
+</div>
 <!-- REASONS -->
 <section>
   <h2>Reasons Why I Love You 📝</h2>
@@ -832,7 +909,15 @@ body.no-scroll{
     <button id="noBtn" onclick="moveNo()">NO 😏</button>
   </div>
 </section>
-
+<section class="soft-end">
+  <div class="soft-center">
+    <p>
+  This isn’t the end.<br>
+  Idhu oru stop illa.<br>
+  Just a quiet breath… to feel everything. 🤍
+</p>
+  </div>
+</section>
 
 <script>
 /* ---------- TYPEWRITER ---------- */
@@ -1095,16 +1180,40 @@ function closeVoicePopup(){
 function openImgPopup(src){
   const popup = document.getElementById("imgPopup");
   const img = document.getElementById("popupImg");
+  const line = document.getElementById("memoryLine");
 
   img.src = src;
   popup.style.display = "flex";
   document.body.classList.add("no-scroll");
+
+  // hide line first
+  line.classList.remove("show");
+
+  // show line after 0.6 sec
+  setTimeout(()=>{
+    line.classList.add("show");
+  },600);
 }
 
 function closeImgPopup(){
-  document.getElementById("imgPopup").style.display = "none";
+  const popup = document.getElementById("imgPopup");
+  const line = document.getElementById("memoryLine");
+
+  popup.style.display = "none";
   document.body.classList.remove("no-scroll");
+
+  // hide emotion line
+  line.classList.remove("show");
 }
+
+const pauseNote = document.getElementById("pauseNote");
+
+window.addEventListener("scroll",()=>{
+  const rect = pauseNote.getBoundingClientRect().top;
+  if(rect < window.innerHeight - 200){
+    pauseNote.classList.add("show");
+  }
+});
 </script>
 <div id="popup" class="popup">
   <div class="popup-box">
